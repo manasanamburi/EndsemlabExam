@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merged Features: Registration & Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+        .container {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .feature-box {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        form label, form input, form select, form button {
+            display: block;
+            margin-bottom: 15px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        form input[type="text"], form select {
+            border: 1px solid #ccc;
+        }
+        form button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        form button:hover {
+            background-color: #218838;
+        }
+        .calendar-entry {
+            border-left: 5px solid #6f42c1;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            background-color: #f8f7ff;
+            border-radius: 4px;
+        }
+        .calendar-entry strong {
+            color: #6f42c1;
+            display: block;
+            margin-bottom: 5px;
+        }
+        #registrationMessage {
+            padding: 10px;
+            background-color: #e6ffed;
+            border: 1px solid #c3e6cb;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Application Main Dashboard</h1>
+        <p>Featuring Course Registration and Event Calendar</p>
+    </header>
+
+    <div class="container">
+        <div class="feature-box" id="course-registration">
+            <h2>📚 Course Registration</h2>
+            <form id="registrationForm">
+                <label for="courseName">Select Course:</label>
+                <select id="courseName" required>
+                    <option value="">-- Choose a Course --</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Cloud Computing">Cloud Computing</option>
+                </select>
+
+                <label for="studentName">Your Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name" required>
+
+                <button type="submit">Register for Course</button>
+            </form>
+
+            <div id="registrationMessage"></div>
+        </div>
+
+        <div class="feature-box" id="event-calendar">
+            <h2>📅 Event Calendar</h2>
+            <div id="eventList">
+                <div class="calendar-entry">
+                    <strong>2025-12-05:</strong> New Student Orientation
+                </div>
+                <div class="calendar-entry">
+                    <strong>2025-12-10:</strong> Mid-Term Project Deadline
+                </div>
+                <div class="calendar-entry">
+                    <strong>2025-12-15:</strong> Tech Talk on AI Ethics
+                </div>
+            </div>
+            <p style="font-style: italic; margin-top: 20px; text-align: center; color: #666;">Check back often for updated event listings.</p>
+        </div>
+    </div>
+
+    <script>
+        
+        const form = document.getElementById('registrationForm');
+        const messageDisplay = document.getElementById('registrationMessage');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const course = document.getElementById('courseName').value;
+            const student = document.getElementById('studentName').value;
+
+            if (course && student) {
+             
+                messageDisplay.innerHTML = `✅ **SUCCESS!** ${student} is now registered for the **${course}** course!`;
+                messageDisplay.style.display = 'block';
+
+                
+            } else {
+                messageDisplay.innerHTML = '❌ Please select a course and enter your name.';
+                messageDisplay.style.backgroundColor = '#f8d7da';
+                messageDisplay.style.border = '1px solid #f5c6cb';
+                messageDisplay.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
